@@ -38,8 +38,23 @@ class LotteryApp:
         self.numbers_display = tk.Frame(self.numbers_frame, bg="#4B2D82")
         self.numbers_display.pack(pady=10)
         
-        # Frequency analysis label
-        self.freq_label = tk.Label(self.main_frame, text="", fg="white", bg="#1B0E3B",
+        # Frequency analysis container (same color as Winning Numbers)
+        self.freq_frame = tk.Frame(self.main_frame, bg="#4B2D82")
+        self.freq_frame.pack(padx=20, pady=10, fill="x")
+
+        # Frequency Analysis title (centered, bold, similar size to Winning Numbers)
+        self.freq_title = tk.Label(
+            self.freq_frame,
+            text="Frequency Analysis",
+            fg="white",
+            bg="#4B2D82",
+            font=("Montserrat", 12, "bold"),
+            anchor="center",
+            justify="center"
+        )
+        self.freq_title.pack(pady=(10, 0), fill="x")
+        
+        self.freq_label = tk.Label(self.freq_frame, text="", fg="white", bg="#4B2D82",
                                   font=("Montserrat", 10), wraplength=280, justify="left")
         self.freq_label.pack(pady=10)
         
@@ -108,7 +123,7 @@ class LotteryApp:
                 label.configure(bg="#3B2A7A", fg="white")
         
         # Update frequency analysis text
-        freq_text = "Frequency Analysis:\n"
+        freq_text = ""
         for num, count in top_6:
             freq_text += f"Number {num}: Appeared {count} times\n"
         self.freq_label.config(text=freq_text)
